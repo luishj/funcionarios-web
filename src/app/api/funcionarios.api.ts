@@ -12,6 +12,16 @@ import { FuncionarioDTO } from 'src/app/models/funcionario.dto';
 export class FuncionariosApi {
     constructor(private http: HttpClient) { }
 
+    adquirirTodos(): Observable<Array<FuncionarioDTO>> {
+        return this.http.get<Array<FuncionarioDTO>>(EndpointsConstant.FUNCIONARIOS.buscarFuncionarios).pipe(
+            map(funciorios => {
+                return funciorios;
+            })
+        );
+    }
+    salvar(funcionarioDTO: FuncionarioDTO): Observable<FuncionarioDTO> {
+        return this.http.post<FuncionarioDTO>(EndpointsConstant.FUNCIONARIOS.salvarFuncionarios, funcionarioDTO)
+    }
 
 
 
